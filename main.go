@@ -68,6 +68,10 @@ func main() {
 			fmt.Printf("Error unmarshaling to typed struct: %v\n", err)
 			continue
 		}
+
+		if len(report.Report.Vulnerabilities) == 0 {
+			continue
+		}
 		fmt.Printf("Name: %s, Namespace: %s\n", report.Name, report.Namespace)
 		table := tablewriter.NewTable(os.Stdout)
 		table.Header("Resource", "CVE", "Severity", "Installed", "Fixed", "Meta")
